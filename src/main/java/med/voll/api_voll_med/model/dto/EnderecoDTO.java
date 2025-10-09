@@ -1,5 +1,7 @@
 package med.voll.api_voll_med.model.dto;
 
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,11 +13,18 @@ import lombok.ToString;
 @ToString
 public class EnderecoDTO {
 
-    private String logradouro;
-    private String bairro;
-    private String cep;
-    private String cidade;
-    private String uf;
-    private String numero;
-    private String complemento;
+  @NotBlank(message = "campo obrigatório.")
+  private String logradouro;
+  @NotBlank(message = "campo obrigatório.")
+  private String bairro;
+  @NotBlank(message = "campo obrigatório.")
+  private String cep;
+  @NotBlank(message = "campo obrigatório.")
+  private String cidade;
+  @NotBlank(message = "campo obrigatório.")
+  private String uf;
+  @Nullable
+  private String numero;
+  @Nullable
+  private String complemento;
 }
