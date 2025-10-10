@@ -7,9 +7,24 @@ public class ValidationUtils {
 
   public static ErrorResponseDTO toErrorResponse(FieldError fieldError) {
     return new ErrorResponseDTO(
-            fieldError.getField(),
+            ValidationUtils.alwaysGetLastProperty(fieldError.getField()),
             fieldError.getRejectedValue(),
             fieldError.getDefaultMessage()
     );
+  }
+
+  public static String alwaysGetLastProperty(String property) {
+
+    String newProperty = "";
+
+    if (property.contains(".")) {
+      String[] splittedProperty = property.split("\\.");
+      int lastIndexFromThisList = splittedProperty.length - 1;
+      newProperty = splittedProperty[lastIndexFromThisList];
+    } else {
+      newProperty = property;
+    }
+
+    return newProperty;
   }
 }

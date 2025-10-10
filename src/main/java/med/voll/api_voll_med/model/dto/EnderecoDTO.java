@@ -2,6 +2,7 @@ package med.voll.api_voll_med.model.dto;
 
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class EnderecoDTO {
   @NotBlank(message = "campo obrigatório.")
   private String bairro;
   @NotBlank(message = "campo obrigatório.")
+  @Pattern(regexp = "\\w{8}$", message = "o cep deve ter 8 digitos")
   private String cep;
   @NotBlank(message = "campo obrigatório.")
   private String cidade;
