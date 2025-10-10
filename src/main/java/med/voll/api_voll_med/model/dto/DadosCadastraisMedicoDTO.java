@@ -18,13 +18,20 @@ public class DadosCadastraisMedicoDTO {
 
   @NotBlank(message = "campo obrigatório.")
   private String nome;
+
   @NotBlank(message = "campo obrigatório.")
   private String email;
+
+  @NotBlank(message = "campo obrigatório.")
+  private String telefone;
+
   @NotBlank(message = "campo obrigatório.")
   @Pattern(regexp = "^\\d{4,6}$", message = "o valor deve der no mínimo 4 e no máximo 6 digitos.")
   private String crm;
+
   @NotNull(message = "campo obrigatório")
   private EspecialidadeEnum especialidade;
+
   @NotNull(message = "campo obrigatório")
   @Valid
   private EnderecoDTO endereco;
