@@ -1,15 +1,15 @@
 package med.voll.api_voll_med.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api_voll_med.model.dto.DadosCadastraisMedicoDTO;
+import med.voll.api_voll_med.model.dto.medico.DadosCadastraisMedicoDTO;
+import med.voll.api_voll_med.model.dto.medico.DadosListagemMedicoDTO;
 import med.voll.api_voll_med.model.entity.Medico;
 import med.voll.api_voll_med.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/medicos")
@@ -28,5 +28,14 @@ public class MedicoController {
   @PostMapping
   public void cadastrar(@Valid @RequestBody DadosCadastraisMedicoDTO dadosCadastraisMedicoDTO) {
     medicoRepository.save(new Medico(dadosCadastraisMedicoDTO));
+  }
+
+  @GetMapping
+  public List<DadosListagemMedicoDTO> listar() {
+    return medicoRepository
+            .findAll()
+            .stream()
+            .map(DadosListagemMedicoDTO::new)
+            .toList();
   }
 }

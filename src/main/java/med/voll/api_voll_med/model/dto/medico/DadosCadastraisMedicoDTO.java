@@ -1,4 +1,4 @@
-package med.voll.api_voll_med.model.dto;
+package med.voll.api_voll_med.model.dto.medico;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import med.voll.api_voll_med.enums.EspecialidadeEnum;
+import med.voll.api_voll_med.model.dto.endereco.EnderecoDTO;
 
 @Getter
 @Setter

@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api_voll_med.enums.EspecialidadeEnum;
-import med.voll.api_voll_med.model.dto.DadosCadastraisMedicoDTO;
+import med.voll.api_voll_med.model.dto.medico.DadosCadastraisMedicoDTO;
 
 /*
  * Define o nome da tabela no banco de dados.
