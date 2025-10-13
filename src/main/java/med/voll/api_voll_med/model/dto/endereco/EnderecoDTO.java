@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import med.voll.api_voll_med.model.entity.Medico;
 
 @Getter
 @Setter
@@ -29,4 +30,14 @@ public class EnderecoDTO {
   private String numero;
   @Nullable
   private String complemento;
+
+  public EnderecoDTO(Medico medico) {
+    this.logradouro = medico.getEndereco().getLogradouro();
+    this.bairro = medico.getEndereco().getBairro();
+    this.cep = medico.getEndereco().getCep();
+    this.cidade = medico.getEndereco().getCidade();
+    this.uf = medico.getEndereco().getUf();
+    this.numero = medico.getEndereco().getNumero();
+    this.complemento = medico.getEndereco().getComplemento();
+  }
 }

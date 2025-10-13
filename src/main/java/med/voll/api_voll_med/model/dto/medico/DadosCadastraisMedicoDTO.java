@@ -10,12 +10,15 @@ import lombok.Setter;
 import lombok.ToString;
 import med.voll.api_voll_med.enums.EspecialidadeEnum;
 import med.voll.api_voll_med.model.dto.endereco.EnderecoDTO;
+import med.voll.api_voll_med.model.entity.Medico;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 public class DadosCadastraisMedicoDTO {
+
+  private Long id;
 
   @NotBlank(message = "campo obrigatório.")
   private String nome;
@@ -36,5 +39,15 @@ public class DadosCadastraisMedicoDTO {
   @NotNull(message = "campo obrigatório")
   @Valid
   private EnderecoDTO endereco;
+
+  public DadosCadastraisMedicoDTO(Medico medico) {
+    this.id = medico.getId();
+    this.nome = medico.getNome();
+    this.email = medico.getEmail();
+    this.telefone = medico.getTelefone();
+    this.crm = medico.getCrm();
+    this.especialidade = medico.getEspecialidade();
+    this.endereco = new EnderecoDTO(medico);
+  }
 
 }
