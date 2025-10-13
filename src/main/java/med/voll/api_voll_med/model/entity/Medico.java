@@ -1,11 +1,13 @@
 package med.voll.api_voll_med.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api_voll_med.enums.EspecialidadeEnum;
+import med.voll.api_voll_med.model.dto.medico.DadosAtualizacaoMeditoDTO;
 import med.voll.api_voll_med.model.dto.medico.DadosCadastraisMedicoDTO;
 
 /*
@@ -67,5 +69,17 @@ public class Medico {
     this.telefone = dadosCadastraisMedicoDTO.getTelefone();
     this.especialidade = dadosCadastraisMedicoDTO.getEspecialidade();
     this.endereco = new Endereco(dadosCadastraisMedicoDTO.getEndereco());
+  }
+
+  public void atualizarInformacoes(@Valid DadosAtualizacaoMeditoDTO dadosAtualizacaoMeditoDTO) {
+    if (dadosAtualizacaoMeditoDTO.nome() != null) {
+      this.nome = dadosAtualizacaoMeditoDTO.nome();
+    }
+    if (dadosAtualizacaoMeditoDTO.telefone() != null) {
+      this.telefone = dadosAtualizacaoMeditoDTO.telefone();
+    }
+    if (dadosAtualizacaoMeditoDTO.endereco() != null) {
+      this.endereco.atualizarInformacoes(dadosAtualizacaoMeditoDTO.endereco());
+    }
   }
 }

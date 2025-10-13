@@ -1,6 +1,7 @@
 package med.voll.api_voll_med.controller;
 
 import jakarta.validation.Valid;
+import med.voll.api_voll_med.model.dto.medico.DadosAtualizacaoMeditoDTO;
 import med.voll.api_voll_med.model.dto.medico.DadosCadastraisMedicoDTO;
 import med.voll.api_voll_med.model.dto.medico.DadosListagemMedicoDTO;
 import med.voll.api_voll_med.model.entity.Medico;
@@ -29,23 +30,30 @@ public class MedicoController {
 
   @PostMapping
   @Transactional
-  public ResponseEntity<DadosCadastraisMedicoDTO> cadastrar(@Valid @RequestBody DadosCadastraisMedicoDTO dadosCadastraisMedicoDTO) {
+  public ResponseEntity<DadosCadastraisMedicoDTO> cadastrar(@RequestBody @Valid DadosCadastraisMedicoDTO dadosCadastraisMedicoDTO) {
     Medico medico = medicoRepository.save(new Medico(dadosCadastraisMedicoDTO));
     URI uri = URI.create("/medicos/" + medico.getId());
     return ResponseEntity
-            .created(uri)
-            .body(new DadosCadastraisMedicoDTO(medico));
+        .created(uri)
+        .body(new DadosCadastraisMedicoDTO(medico));
   }
 
   @GetMapping
   public Page<DadosListagemMedicoDTO> listar(Pageable pageable) {
     return medicoRepository
-            .findAll(pageable)
-            .map(DadosListagemMedicoDTO::new);
+        .findAll(pageable)
+        .map(DadosListagemMedicoDTO::new);
   }
 
-//  @PutMapping(name = "{id}")
-//  @Transactional
-//  public
+  @PutMapping("{id}")
+  @Transactional
+  public ResponseEntity<DadosCadastraisMedicoDTO> atualizar(
+      @PathVariable Long id,
+      @RequestBody @Valid DadosAtualizacaoMeditoDTO dadosAtualizacaoMeditoDTO) {
+    var medico = medicoRepository.getReferenceById(id);
+    medico.atualizarInformacoes(dadosAtualizacaoMeditoDTO);
+    var medicoDTO = new DadosCadastraisMedicoDTO(medico);
+    return ResponseEntity.ok(medicoDTO);
+  }
 
 }

@@ -28,4 +28,29 @@ public class Endereco {
     this.cidade = enderecoDTO.getCidade();
     this.uf = enderecoDTO.getUf();
   }
+
+  public void atualizarInformacoes(EnderecoDTO endereco) {
+    if (endereco.getLogradouro() != null) {
+      this.logradouro = endereco.getLogradouro();
+    }
+    if (endereco.getBairro() != null) {
+      this.bairro = endereco.getBairro();
+    }
+    if (endereco.getCep() != null) {
+      this.cep = endereco.getCep();
+    }
+    if (endereco.getCidade() != null) {
+      this.cidade = endereco.getCidade();
+    }
+    if (endereco.getUf() != null) {
+      this.uf = endereco.getUf();
+    }
+    this.bairro = endereco.getBairro();
+    this.cep = endereco.getCep();
+    this.cidade = endereco.getCidade();
+    this.uf = endereco.getUf();
+
+    this.numero = endereco.getNumero();
+    this.complemento = endereco.getComplemento();
+  }
 }
