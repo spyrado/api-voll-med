@@ -2,10 +2,7 @@ package med.voll.api_voll_med.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import med.voll.api_voll_med.enums.EspecialidadeEnum;
 import med.voll.api_voll_med.model.dto.medico.DadosAtualizacaoMeditoDTO;
 import med.voll.api_voll_med.model.dto.medico.DadosCadastraisMedicoDTO;
@@ -27,6 +24,7 @@ import med.voll.api_voll_med.model.dto.medico.DadosCadastraisMedicoDTO;
  * Exemplo: medico.getNome() funciona mesmo sem escrever o método manualmente.
  */
 @Getter
+@Setter
 
 /*
  * Lombok gera um construtor sem parâmetros.
@@ -53,6 +51,7 @@ public class Medico {
   private String email;
   private String telefone;
   private String crm;
+  private Boolean ativo;
 
   @Enumerated(EnumType.STRING)
   private EspecialidadeEnum especialidade;
