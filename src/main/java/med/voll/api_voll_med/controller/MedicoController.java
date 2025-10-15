@@ -46,6 +46,16 @@ public class MedicoController {
         .map(DadosListagemMedicoDTO::new);
   }
 
+  @GetMapping("{id}")
+  public DadosCadastraisMedicoDTO buscarPorId(@PathVariable Long id) {
+    // TODO Melhoria futura, em caso de não encontrar o id retornar 404 no response
+    var medico = medicoRepository.findById(id);
+    return medico
+        .filter(Medico::getAtivo)
+        .map(DadosCadastraisMedicoDTO::new)
+        .orElse(null);
+  }
+
   @PutMapping("{id}")
   @Transactional
   public ResponseEntity<DadosCadastraisMedicoDTO> atualizar(
