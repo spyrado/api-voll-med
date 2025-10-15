@@ -42,7 +42,7 @@ public class MedicoController {
   @GetMapping
   public Page<DadosListagemMedicoDTO> listar(Pageable pageable) {
     return medicoRepository
-        .findAll(pageable)
+        .findByAtivoTrue(pageable)
         .map(DadosListagemMedicoDTO::new);
   }
 
