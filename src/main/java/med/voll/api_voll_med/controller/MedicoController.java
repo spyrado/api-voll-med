@@ -56,4 +56,11 @@ public class MedicoController {
     return ResponseEntity.ok(medicoDTO);
   }
 
+  @DeleteMapping("{id}")
+  @Transactional
+  public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    medicoRepository.deleteById(id);
+    return ResponseEntity.noContent().build();
+  }
+
 }
