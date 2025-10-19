@@ -1,15 +1,15 @@
 package med.voll.api_voll_med.util;
 
-import med.voll.api_voll_med.model.dto.error.ErrorResponseDTO;
+import med.voll.api_voll_med.model.dto.error.ErrorValidationResponseDTO;
 import org.springframework.validation.FieldError;
 
 public class ValidationUtils {
 
-  public static ErrorResponseDTO toErrorResponse(FieldError fieldError) {
-    return new ErrorResponseDTO(
-            ValidationUtils.alwaysGetLastProperty(fieldError.getField()),
-            fieldError.getRejectedValue(),
-            fieldError.getDefaultMessage()
+  public static ErrorValidationResponseDTO toErrorResponse(FieldError fieldError) {
+    return new ErrorValidationResponseDTO(
+        ValidationUtils.alwaysGetLastProperty(fieldError.getField()),
+        fieldError.getRejectedValue(),
+        fieldError.getDefaultMessage()
     );
   }
 

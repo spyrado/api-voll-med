@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/medicos")
@@ -69,9 +68,9 @@ public class MedicoController {
 
   @DeleteMapping("{id}")
   @Transactional
-  public ResponseEntity<Void> deletar(@PathVariable Long id) {
-    Optional<Medico> medico = medicoRepository.findById(id);
-    medico.ifPresent(value -> value.setAtivo(false));
+  public ResponseEntity<?> deletar(@PathVariable Long id) {
+    var medico = medicoRepository.getReferenceById(id);
+    medico.excluir();
     return ResponseEntity.noContent().build();
   }
 
